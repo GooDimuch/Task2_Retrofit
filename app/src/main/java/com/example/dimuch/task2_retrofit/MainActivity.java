@@ -4,11 +4,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,39 +18,60 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    List<PostModel> posts;
+    List<SalesRateModel> exchangeRatesArray;
+    private ExchangeRatesAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        posts = new ArrayList<>();
+        exchangeRatesArray = new ArrayList<>();
 
         recyclerView = (RecyclerView) findViewById(R.id.posts_recycle_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        PostsAdapter adapter = new PostsAdapter(posts);
+        adapter = new ExchangeRatesAdapter();
         recyclerView.setAdapter(adapter);
 
-        try {
-            Response response = App.getApi().getData("bash", 50).execute();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Response response = App.getApi().getData("bash", 100).execute();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
-        App.getApi().getData("bash", 50).enqueue(new Callback<List<PostModel>>() {
+        App.getApi().getData("01.12.2014").enqueue(new Callback<SalesRateModel>() {
             @Override
-            public void onResponse(Call<List<PostModel>> call, Response<List<PostModel>> response) {
-                posts.addAll(response.body());
-                recyclerView.getAdapter().notifyDataSetChanged();
+            public void onResponse(Call<SalesRateModel> call, Response<SalesRateModel> response) {
+                exchangeRatesArray.add(response.body());
+//                    Toast.makeText(getApplicationContext(),
+//                            String.valueOf(exchangeRatesArray.size()), Toast.LENGTH_LONG).show();
+                Log.wtf("myLog", "post1: " + String.valueOf(exchangeRatesArray.size()));
+                adapter.addListNewsEntity(exchangeRatesArray);
             }
 
             @Override
-            public void onFailure(Call<List<PostModel>> call, Throwable t) {
-                Toast.makeText(MainActivity.this, "An error occurred during networking", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<SalesRateModel> call, Throwable t) {
+
             }
         });
+
+        App.getApi().getData("02.12.2014").enqueue(new Callback<SalesRateModel>() {
+            @Override
+            public void onResponse(Call<SalesRateModel> call, Response<SalesRateModel> response) {
+                exchangeRatesArray.add(response.body());
+//                    Toast.makeText(getApplicationContext(),
+//                            String.valueOf(exchangeRatesArray.size()), Toast.LENGTH_LONG).show();
+                Log.wtf("myLog", "post2: " + String.valueOf(exchangeRatesArray.size()));
+                adapter.addListNewsEntity(exchangeRatesArray);
+            }
+
+            @Override
+            public void onFailure(Call<SalesRateModel> call, Throwable t) {
+
+            }
+        });
+//        recyclerView.setAdapter(adapter);
     }
 }

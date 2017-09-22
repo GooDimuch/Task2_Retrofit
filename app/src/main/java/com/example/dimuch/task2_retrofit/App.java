@@ -7,21 +7,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class App extends Application {
 
-    private static UmoriliApi umoriliApi;
-    private Retrofit retrofit;
+    private static PrivatBankApi privatBankApi;
+    private static Retrofit retrofit;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://www.umori.li/") //Базовая часть адреса
+                .baseUrl("https://api.privatbank.ua/") //Базовая часть адреса
+//                .baseUrl("http://umorili.herokuapp.com/") //Базовая часть адреса
                 .addConverterFactory(GsonConverterFactory.create()) //Конвертер, необходимый для преобразования JSON'а в объекты
                 .build();
-        umoriliApi = retrofit.create(UmoriliApi.class); //Создаем объект, при помощи которого будем выполнять запросы
     }
 
-    public static UmoriliApi getApi() {
-        return umoriliApi;
+    public static PrivatBankApi getApi() {
+        privatBankApi = retrofit.create(PrivatBankApi.class); //Создаем объект, при помощи которого будем выполнять запросы
+        return privatBankApi;
     }
 }

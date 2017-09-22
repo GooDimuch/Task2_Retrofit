@@ -1,11 +1,11 @@
-package com.example.dimuch.task2_retrofit;
+package com.example.dimuch.task2_retrofit.trash;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class PostModel {
 
-    @SerializedName("site")
+    @SerializedName("bank")
     @Expose
     private String site;
     @SerializedName("name")
@@ -22,14 +22,14 @@ public class PostModel {
     private String elementPureHtml;
 
     /**
-     * @return The site
+     * @return The bank
      */
     public String getSite() {
         return site;
     }
 
     /**
-     * @param site The site
+     * @param site The bank
      */
     public void setSite(String site) {
         this.site = site;
