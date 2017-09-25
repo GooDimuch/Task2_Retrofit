@@ -12,7 +12,8 @@ import java.util.List;
 
 public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdapter.ViewHolder> {
 
-    private List<SalesRateModel> exchangeRatesArray;
+//    private List<SalesRateModel> exchangeRatesArray;
+    private List<String> exchangeRatesArray;
 
     public ExchangeRatesAdapter() {
 
@@ -26,13 +27,14 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        SalesRateModel post = exchangeRatesArray.get(position);
+//        SalesRateModel post = exchangeRatesArray.get(position);
+        String post = exchangeRatesArray.get(position);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            holder.exchangeRate.setText(Html.fromHtml(post.getExchangeRate().toString(), Html.FROM_HTML_MODE_LEGACY));
+            holder.exchangeRate.setText(Html.fromHtml(post.toString(), Html.FROM_HTML_MODE_LEGACY));
         } else {
-            holder.exchangeRate.setText(Html.fromHtml(post.getExchangeRate().toString()));
+            holder.exchangeRate.setText(Html.fromHtml(post.toString()));
         }
-        holder.bank.setText(post.getDate());
+        holder.bank.setText("test");
     }
 
     @Override
@@ -43,19 +45,24 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+
         TextView exchangeRate;
         TextView bank;
-
         public ViewHolder(View itemView) {
             super(itemView);
             exchangeRate = (TextView) itemView.findViewById(R.id.exchangeRate);
             bank = (TextView) itemView.findViewById(R.id.bank);
         }
-    }
 
-    public void addListNewsEntity(List<SalesRateModel> newsEntities) {
-        this.exchangeRatesArray = newsEntities;
-//        exchangeRatesArray.addAll(newsEntities);
+    }
+//    public void addListNewsEntity(List<SalesRateModel> newsEntities) {
+////        this.exchangeRatesArray = newsEntities;
+////        exchangeRatesArray.addAll(newsEntities);
+//        notifyDataSetChanged();
+//    }
+
+    public void addListNewsEntity(List<String> strings) {
+        this.exchangeRatesArray = strings;
         notifyDataSetChanged();
     }
 }

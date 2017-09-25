@@ -63,4 +63,15 @@ public class SalesRateModel {
         this.exchangeRate = exchangeRate;
     }
 
+    @Override
+    public String toString() {
+        return "SalesRateModel{" +
+                "date='" + date + '\'' +
+                ", bank='" + bank + '\'' +
+                ", baseCurrency=" + baseCurrency +
+                ", baseCurrencyLit='" + baseCurrencyLit + '\'' +
+                ", exchangeRate=" + exchangeRate.toString() +
+                '}';
+    }
+
 }
