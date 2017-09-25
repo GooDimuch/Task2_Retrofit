@@ -7,8 +7,11 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface PrivatBankApi {
+
 //    @GET("/api/get")
 //    Call<List<PostModel>> getData(@Query("name") String resourceName, @Query("num") int count);
+
     @GET("p24api/exchange_rates?json")
     Call<SalesRateModel> getData(@Query("date") String date);
+
 }

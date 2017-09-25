@@ -56,22 +56,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-        App.getApi().getData("02.12.2014").enqueue(new Callback<SalesRateModel>() {
-            @Override
-            public void onResponse(Call<SalesRateModel> call, Response<SalesRateModel> response) {
-                exchangeRatesArray.add(response.body());
-//                    Toast.makeText(getApplicationContext(),
-//                            String.valueOf(exchangeRatesArray.size()), Toast.LENGTH_LONG).show();
-                Log.wtf("myLog", "post2: " + String.valueOf(exchangeRatesArray.size()));
-                adapter.addListNewsEntity(exchangeRatesArray);
-            }
-
-            @Override
-            public void onFailure(Call<SalesRateModel> call, Throwable t) {
-
-            }
-        });
-//        recyclerView.setAdapter(adapter);
     }
 }
