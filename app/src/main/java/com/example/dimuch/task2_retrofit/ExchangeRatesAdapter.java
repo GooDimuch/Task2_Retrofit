@@ -63,6 +63,6 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
 
     public void addListNewsEntity(List<String> strings) {
         this.exchangeRatesArray = strings;
-        notifyDataSetChanged();
+//        notifyDataSetChanged();
     }
 }
