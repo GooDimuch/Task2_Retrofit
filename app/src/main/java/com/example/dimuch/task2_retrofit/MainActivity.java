@@ -3,6 +3,7 @@ package com.example.dimuch.task2_retrofit;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -13,9 +14,6 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 public class MainActivity extends MvpAppCompatActivity implements MyView {
 
@@ -28,6 +26,7 @@ public class MainActivity extends MvpAppCompatActivity implements MyView {
 
     private ProgressBar pbLoading;
     private TextView tvLoadingMessage;
+    private TextView tvResultPost;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,31 +35,23 @@ public class MainActivity extends MvpAppCompatActivity implements MyView {
 
         pbLoading = (ProgressBar) findViewById(R.id.pbLoading);
         tvLoadingMessage = (TextView) findViewById(R.id.tvLoadingMessage);
+        tvResultPost = (TextView) findViewById(R.id.tvResultPost);
 
+//        exchangeRatesArray = new ArrayList<>();
 
-        exchangeRatesArray = new ArrayList<>();
+//        recyclerView = (RecyclerView) findViewById(R.id.posts_recycle_view);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+//        recyclerView.setLayoutManager(layoutManager);
 
-        recyclerView = (RecyclerView) findViewById(R.id.posts_recycle_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        adapter = new ExchangeRatesAdapter();
-        recyclerView.setAdapter(adapter);
+//        adapter = new ExchangeRatesAdapter();
+//        recyclerView.setAdapter(adapter);
     }
 
     @Override
-    public void uploadResultPost() {
-        RetrofitHelper.getApi().getData("01.12.2014")
-                .map(SalesRateModel::toString)
-                .toList()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(adapter::addListNewsEntity);
-    }
-
-    @Override
-    public void showResultPost() {
-        adapter.notifyDataSetChanged();
+    public void showResultPost(String sResultPost) {
+        Log.wtf(Constants.MY_LOG, "showResultPost()");
+//        adapter.notifyDataSetChanged();
+        tvResultPost.setText(sResultPost);
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.example.dimuch.task2_retrofit;
 import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,6 @@ import java.util.List;
 
 public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdapter.ViewHolder> {
 
-//    private List<SalesRateModel> exchangeRatesArray;
     private List<String> exchangeRatesArray;
 
     public ExchangeRatesAdapter() {
@@ -27,7 +27,6 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-//        SalesRateModel post = exchangeRatesArray.get(position);
         String post = exchangeRatesArray.get(position);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             holder.exchangeRate.setText(Html.fromHtml(post.toString(), Html.FROM_HTML_MODE_LEGACY));
@@ -55,13 +54,9 @@ public class ExchangeRatesAdapter extends RecyclerView.Adapter<ExchangeRatesAdap
         }
 
     }
-//    public void addListNewsEntity(List<SalesRateModel> newsEntities) {
-////        this.exchangeRatesArray = newsEntities;
-////        exchangeRatesArray.addAll(newsEntities);
-//        notifyDataSetChanged();
-//    }
 
     public void addListNewsEntity(List<String> strings) {
+        Log.wtf(Constants.MY_LOG, "addListNewsEntity()");
         this.exchangeRatesArray = strings;
 //        notifyDataSetChanged();
     }

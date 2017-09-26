@@ -8,9 +8,7 @@ import com.arellomobile.mvp.MvpView;
 
 interface MyView extends MvpView {
 
-    void uploadResultPost();
-
-    void showResultPost();
+    void showResultPost(String sResultPost);
 
     void showMessage(String sLoadingMessage);
 

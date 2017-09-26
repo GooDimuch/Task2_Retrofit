@@ -1,11 +1,15 @@
 package com.example.dimuch.task2_retrofit;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 
 import java.util.concurrent.TimeUnit;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by Dimuch on 26.09.2017.
@@ -14,17 +18,20 @@ import java.util.concurrent.TimeUnit;
 @InjectViewState
 public class MyPresenter extends MvpPresenter<MyView> {
 
+    private String sResultPost = "null";
+
     public MyPresenter() {
-        getViewState().showResultPost();
     }
 
     @Override
     protected void onFirstViewAttach() {
+        Log.wtf(Constants.MY_LOG, "onFirstViewAttach()");
         super.onFirstViewAttach();
 
-        getViewState().uploadResultPost();
+        uploadResultPost();
         getViewState().toggleMessageLoading(true);
         getViewState().showMessage("Loading");
+        getViewState().showResultPost(sResultPost);
 
         new AsyncTask<Void, Void, Void>(){
 
@@ -43,8 +50,22 @@ public class MyPresenter extends MvpPresenter<MyView> {
             protected void onPostExecute(Void aVoid) {
                 getViewState().showMessage("Uploaded");
                 getViewState().toggleMessageLoading(false);
-                getViewState().showResultPost();
+                getViewState().showResultPost(sResultPost);
             }
         }.execute();
+    }
+
+    public void uploadResultPost() {
+        RetrofitHelper.getApi().getData("01.12.2014")
+                .map(SalesRateModel::toString)
+//                .toList()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(adapter::addListNewsEntity);
+                .subscribe(this::setsResultPost);
+    }
+
+    public void setsResultPost(String sResultPost) {
+        this.sResultPost = sResultPost;
     }
 }

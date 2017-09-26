@@ -6,5 +6,6 @@ package com.example.dimuch.task2_retrofit;
 
 public interface Constants {
 
-    public static final int INT_NUM_SECONDS_LOADING = 5;
+    int INT_NUM_SECONDS_LOADING = 2;
+    String MY_LOG = "myLog";
 }
