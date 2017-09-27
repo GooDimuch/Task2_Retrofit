@@ -4,8 +4,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.example.dimuch.task2_retrofit.data.DataManager;
 import com.example.dimuch.task2_retrofit.data.local.RetrofitHelper;
-import com.example.dimuch.task2_retrofit.data.model.privatbank.SalesRateModel;
 import com.example.dimuch.task2_retrofit.data.model.weather.WeatherModel;
 import com.example.dimuch.task2_retrofit.feature.weather.views.IWeatherActivityView;
 import com.example.dimuch.task2_retrofit.utils.Constants;
@@ -19,7 +19,8 @@ import rx.schedulers.Schedulers;
 
 @InjectViewState public class WeatherActivityPresenter extends MvpPresenter<IWeatherActivityView> {
 
-  private String sResultPost = "null";
+  private String mResultPost = "null";
+  private DataManager mDataManager;
 
   public WeatherActivityPresenter() {
   }
@@ -31,13 +32,13 @@ import rx.schedulers.Schedulers;
     uploadResultPost();
     getViewState().toggleMessageLoading(true);
     getViewState().showMessage("Loading");
-    getViewState().showResultPost(sResultPost);
+    getViewState().showResultPost(mResultPost);
 
     new AsyncTask<Void, Void, Void>() {
 
       @Override protected Void doInBackground(Void... params) {
         try {
-          //                    getViewState().showToast("sleep " + Constants.INT_NUM_SECONDS_LOADING + " sec");
+          //getViewState().showToast("sleep " + Constants.INT_NUM_SECONDS_LOADING + " sec");
           TimeUnit.SECONDS.sleep(Constants.INT_NUM_SECONDS_LOADING);
         } catch (InterruptedException e) {
           e.printStackTrace();
@@ -48,34 +49,26 @@ import rx.schedulers.Schedulers;
       @Override protected void onPostExecute(Void aVoid) {
         getViewState().showMessage("Uploaded");
         getViewState().toggleMessageLoading(false);
-        getViewState().showResultPost(sResultPost);
+        getViewState().showResultPost(mResultPost);
       }
     }.execute();
   }
 
   public void uploadResultPost() {
-    //RetrofitHelper.getPrivatBankApiApi()
+    //RetrofitHelper.getPrivatBankApi()
     //    .getData("01.12.2014")
     //    .map(SalesRateModel::toString)
     //    //.toList()
     //    .subscribeOn(Schedulers.io())
     //    .observeOn(AndroidSchedulers.mainThread())
     //    //.subscribe(adapter::addListNewsEntity);
-    //    .subscribe(this::setsResultPost);
+    //    .subscribe(this::setmResultPost);
 
-
-    RetrofitHelper.getWeatherApiApi()
-        .getWeather(Constants.WEATHER_ID, Constants.WEATHER_APPID)
-        .map(WeatherModel::toString)
-        //.toList()
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        //.subscribe(adapter::addListNewsEntity);
-        //.subscribe(this::setsResultPost);
-        .subscribe(this::setsResultPost, throwable -> Log.wtf("myLog", throwable));
+    mDataManager.getWeatherData()
+        .subscribe(this::setmResultPost, throwable -> Log.wtf("myLog", throwable));
   }
 
-  public void setsResultPost(String sResultPost) {
-    this.sResultPost = sResultPost;
+  public void setmResultPost(String mResultPost) {
+    this.mResultPost = mResultPost;
   }
 }

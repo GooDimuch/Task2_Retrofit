@@ -15,7 +15,7 @@ public class RetrofitHelper {
 	private static WeatherApi weatherApi;
 	private static Retrofit retrofit;
 
-	public static PrivatBankApi getPrivatBankApiApi() {
+	public static PrivatBankApi getPrivatBankApi() {
 		if (privatBankApi == null) {
 
 			retrofit = new Retrofit.Builder()
@@ -29,7 +29,7 @@ public class RetrofitHelper {
 		return privatBankApi;
 	}
 
-	public static WeatherApi getWeatherApiApi() {
+	public static WeatherApi getWeatherApi() {
 		if (weatherApi == null) {
 
 			retrofit = new Retrofit.Builder()
