@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.dimuch.task2_retrofit.R;
@@ -19,23 +21,20 @@ import java.util.List;
 
 public class WeatherActivityActivity extends MvpAppCompatActivity implements IWeatherActivityView {
 
+  @BindView(R.id.pbLoading) ProgressBar pbLoading;
+  @BindView(R.id.tvLoadingMessage) TextView tvLoadingMessage;
+  @BindView(R.id.tvResultPost) TextView tvResultPost;
+
   @InjectPresenter WeatherActivityPresenter weatherActivityPresenter;
 
   private RecyclerView recyclerView;
   private List<SalesRateModel> exchangeRatesArray;
   private WeatherAdapter adapter;
 
-  private ProgressBar pbLoading;
-  private TextView tvLoadingMessage;
-  private TextView tvResultPost;
-
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-
-    pbLoading = (ProgressBar) findViewById(R.id.pbLoading);
-    tvLoadingMessage = (TextView) findViewById(R.id.tvLoadingMessage);
-    tvResultPost = (TextView) findViewById(R.id.tvResultPost);
+    ButterKnife.bind(this);
 
     //        exchangeRatesArray = new ArrayList<>();
 

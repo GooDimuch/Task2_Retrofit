@@ -21,7 +21,7 @@ public class RestApi {
         return api.getData(date);
     }
 
-    public Observable<WeatherModel> getWeather(String temp) {
-        return api.getWeather(temp);
+    public Observable<WeatherModel> getWeather(String id, String appId) {
+        return api.getWeather(id, appId);
     }
 }

@@ -21,7 +21,7 @@ public class DataManager {
     return mRestApi.getData(date);
   }
 
-  public Observable<WeatherModel> getWeather(String temp) {
-    return mRestApi.getWeather(temp);
+  public Observable<WeatherModel> getWeather(String id, String appId) {
+    return mRestApi.getWeather(id, appId);
   }
 }

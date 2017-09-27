@@ -11,6 +11,6 @@ public interface PrivatBankApi {
 
   @GET("p24api/exchange_rates?json") Observable<SalesRateModel> getData(@Query("date") String date);
 
-  @GET("p24api/exchange_rates?json") Observable<WeatherModel> getWeather(
-      @Query("date") String date);
+  @GET("data/2.5/forecast?") Observable<WeatherModel> getWeather(@Query("id") String id,
+      @Query("APPID") String appId);
 }
