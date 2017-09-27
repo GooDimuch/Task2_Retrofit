@@ -1,9 +1,9 @@
 package com.example.dimuch.task2_retrofit.data.remote;
 
-import com.example.dimuch.task2_retrofit.data.model.PrivatBankApi;
-import com.example.dimuch.task2_retrofit.data.model.SalesRateModel;
-import com.example.dimuch.task2_retrofit.data.model.WeatherModel;
-
+import com.example.dimuch.task2_retrofit.data.model.privatbank.PrivatBankApi;
+import com.example.dimuch.task2_retrofit.data.model.privatbank.SalesRateModel;
+import com.example.dimuch.task2_retrofit.data.model.weather.WeatherApi;
+import com.example.dimuch.task2_retrofit.data.model.weather.WeatherModel;
 import rx.Observable;
 
 /**
@@ -11,17 +11,19 @@ import rx.Observable;
  */
 
 public class RestApi {
-    private final PrivatBankApi api;
+  private final PrivatBankApi privatbankApi;
+  private final WeatherApi weatherApi;
 
-    public RestApi(PrivatBankApi api) {
-        this.api = api;
-    }
+  public RestApi(PrivatBankApi privatbankApi, WeatherApi weatherApi) {
+    this.privatbankApi = privatbankApi;
+    this.weatherApi = weatherApi;
+  }
 
-    public Observable<SalesRateModel> getData(String date) {
-        return api.getData(date);
-    }
+  public Observable<SalesRateModel> getData(String date) {
+    return privatbankApi.getData(date);
+  }
 
-    public Observable<WeatherModel> getWeather(String id, String appId) {
-        return api.getWeather(id, appId);
-    }
+  public Observable<WeatherModel> getWeather(String id, String appId) {
+    return weatherApi.getWeather(id, appId);
+  }
 }

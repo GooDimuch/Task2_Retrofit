@@ -5,7 +5,8 @@ import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.example.dimuch.task2_retrofit.data.local.RetrofitHelper;
-import com.example.dimuch.task2_retrofit.data.model.SalesRateModel;
+import com.example.dimuch.task2_retrofit.data.model.privatbank.SalesRateModel;
+import com.example.dimuch.task2_retrofit.data.model.weather.WeatherModel;
 import com.example.dimuch.task2_retrofit.feature.weather.views.IWeatherActivityView;
 import com.example.dimuch.task2_retrofit.utils.Constants;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +25,7 @@ import rx.schedulers.Schedulers;
   }
 
   @Override protected void onFirstViewAttach() {
-    Log.wtf(Constants.MY_LOG, "onFirstViewAttach()");
+    //Log.wtf(Constants.MY_LOG, "onFirstViewAttach()");
     super.onFirstViewAttach();
 
     uploadResultPost();
@@ -53,12 +54,25 @@ import rx.schedulers.Schedulers;
   }
 
   public void uploadResultPost() {
-    RetrofitHelper.getApi().getData("01.12.2014").map(SalesRateModel::toString)
-        //                .toList()
-        .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-        //                .subscribe(adapter::addListNewsEntity);
-        .subscribe(this::setsResultPost);
-    //                .subscribe(s -> { },Throwable::printStackTrace,() -> {});
+    //RetrofitHelper.getPrivatBankApiApi()
+    //    .getData("01.12.2014")
+    //    .map(SalesRateModel::toString)
+    //    //.toList()
+    //    .subscribeOn(Schedulers.io())
+    //    .observeOn(AndroidSchedulers.mainThread())
+    //    //.subscribe(adapter::addListNewsEntity);
+    //    .subscribe(this::setsResultPost);
+
+
+    RetrofitHelper.getWeatherApiApi()
+        .getWeather(Constants.WEATHER_ID, Constants.WEATHER_APPID)
+        .map(WeatherModel::toString)
+        //.toList()
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        //.subscribe(adapter::addListNewsEntity);
+        //.subscribe(this::setsResultPost);
+        .subscribe(this::setsResultPost, throwable -> Log.wtf("myLog", throwable));
   }
 
   public void setsResultPost(String sResultPost) {

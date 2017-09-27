@@ -1,4 +1,4 @@
-package com.example.dimuch.task2_retrofit.data.model;
+package com.example.dimuch.task2_retrofit.data.model.weather;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -13,6 +13,36 @@ public class Main {
   @SerializedName("grnd_level") @Expose private Double grndLevel;
   @SerializedName("humidity") @Expose private Integer humidity;
   @SerializedName("temp_kf") @Expose private Integer tempKf;
+
+  /**
+   * No args constructor for use in serialization
+   */
+  public Main() {
+  }
+
+  /**
+   *
+   * @param seaLevel
+   * @param humidity
+   * @param pressure
+   * @param grndLevel
+   * @param tempMax
+   * @param temp
+   * @param tempKf
+   * @param tempMin
+   */
+  public Main(Double temp, Double tempMin, Double tempMax, Double pressure, Double seaLevel,
+      Double grndLevel, Integer humidity, Integer tempKf) {
+    super();
+    this.temp = temp;
+    this.tempMin = tempMin;
+    this.tempMax = tempMax;
+    this.pressure = pressure;
+    this.seaLevel = seaLevel;
+    this.grndLevel = grndLevel;
+    this.humidity = humidity;
+    this.tempKf = tempKf;
+  }
 
   public Double getTemp() {
     return temp;

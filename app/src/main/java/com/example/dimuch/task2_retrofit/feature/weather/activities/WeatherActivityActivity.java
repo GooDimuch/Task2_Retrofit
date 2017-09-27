@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.dimuch.task2_retrofit.R;
-import com.example.dimuch.task2_retrofit.data.model.SalesRateModel;
+import com.example.dimuch.task2_retrofit.data.model.privatbank.SalesRateModel;
 import com.example.dimuch.task2_retrofit.feature.weather.adapters.WeatherAdapter;
 import com.example.dimuch.task2_retrofit.feature.weather.presenters.WeatherActivityPresenter;
 import com.example.dimuch.task2_retrofit.feature.weather.views.IWeatherActivityView;
@@ -47,7 +47,6 @@ public class WeatherActivityActivity extends MvpAppCompatActivity implements IWe
   }
 
   @Override public void showResultPost(String sResultPost) {
-    Log.wtf(Constants.MY_LOG, "showResultPost()");
     //        adapter.notifyDataSetChanged();
     tvResultPost.setText(sResultPost);
   }

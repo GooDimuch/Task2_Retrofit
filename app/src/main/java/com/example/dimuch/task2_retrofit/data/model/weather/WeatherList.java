@@ -1,9 +1,9 @@
-package com.example.dimuch.task2_retrofit.data.model;
+package com.example.dimuch.task2_retrofit.data.model.weather;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class List {
+public class WeatherList {
 
   @SerializedName("dt") @Expose private Integer dt;
   @SerializedName("main") @Expose private Main main;
@@ -13,6 +13,36 @@ public class List {
   @SerializedName("sys") @Expose private Sys sys;
   @SerializedName("dt_txt") @Expose private String dtTxt;
   @SerializedName("rain") @Expose private Rain rain;
+
+  /**
+   * No args constructor for use in serialization
+   */
+  public WeatherList() {
+  }
+
+  /**
+   *
+   * @param clouds
+   * @param dt
+   * @param wind
+   * @param sys
+   * @param dtTxt
+   * @param weather
+   * @param rain
+   * @param main
+   */
+  public WeatherList(Integer dt, Main main, java.util.List<Weather> weather, Clouds clouds,
+      Wind wind, Sys sys, String dtTxt, Rain rain) {
+    super();
+    this.dt = dt;
+    this.main = main;
+    this.weather = weather;
+    this.clouds = clouds;
+    this.wind = wind;
+    this.sys = sys;
+    this.dtTxt = dtTxt;
+    this.rain = rain;
+  }
 
   public Integer getDt() {
     return dt;

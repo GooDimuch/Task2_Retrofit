@@ -1,4 +1,4 @@
-package com.example.dimuch.task2_retrofit.data.model;
+package com.example.dimuch.task2_retrofit.data.model.weather;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,6 +7,23 @@ public class Wind {
 
   @SerializedName("speed") @Expose private Double speed;
   @SerializedName("deg") @Expose private Double deg;
+
+  /**
+   * No args constructor for use in serialization
+   */
+  public Wind() {
+  }
+
+  /**
+   *
+   * @param speed
+   * @param deg
+   */
+  public Wind(Double speed, Double deg) {
+    super();
+    this.speed = speed;
+    this.deg = deg;
+  }
 
   public Double getSpeed() {
     return speed;

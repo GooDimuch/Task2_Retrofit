@@ -1,7 +1,9 @@
 package com.example.dimuch.task2_retrofit.data.local;
 
-import com.example.dimuch.task2_retrofit.data.model.PrivatBankApi;
+import com.example.dimuch.task2_retrofit.data.model.privatbank.PrivatBankApi;
 
+import com.example.dimuch.task2_retrofit.data.model.weather.WeatherApi;
+import com.example.dimuch.task2_retrofit.utils.Constants;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -10,14 +12,14 @@ import rx.schedulers.Schedulers;
 public class RetrofitHelper {
 
 	private static PrivatBankApi privatBankApi;
+	private static WeatherApi weatherApi;
 	private static Retrofit retrofit;
-	private static String baseUrl = "https://api.privatbank.ua/";
 
-	public static PrivatBankApi getApi() {
+	public static PrivatBankApi getPrivatBankApiApi() {
 		if (privatBankApi == null) {
 
 			retrofit = new Retrofit.Builder()
-					.baseUrl(baseUrl) //Базовая часть адреса
+					.baseUrl(Constants.PRIVATBANK_BASE_URL) //Базовая часть адреса
 					.addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()))
 					.addConverterFactory(GsonConverterFactory.create()) //Конвертер, необходимый для преобразования JSON'а в объекты
 					.build();
@@ -25,5 +27,19 @@ public class RetrofitHelper {
 
 		}
 		return privatBankApi;
+	}
+
+	public static WeatherApi getWeatherApiApi() {
+		if (weatherApi == null) {
+
+			retrofit = new Retrofit.Builder()
+					.baseUrl(Constants.WEATHER_BASE_URL) //Базовая часть адреса
+					.addCallAdapterFactory(RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io()))
+					.addConverterFactory(GsonConverterFactory.create()) //Конвертер, необходимый для преобразования JSON'а в объекты
+					.build();
+			weatherApi = retrofit.create(WeatherApi.class);
+
+		}
+		return weatherApi;
 	}
 }

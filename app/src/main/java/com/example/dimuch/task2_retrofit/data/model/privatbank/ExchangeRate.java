@@ -1,4 +1,4 @@
-package com.example.dimuch.task2_retrofit.data.model;
+package com.example.dimuch.task2_retrofit.data.model.privatbank;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

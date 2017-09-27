@@ -1,7 +1,7 @@
 package com.example.dimuch.task2_retrofit.data;
 
-import com.example.dimuch.task2_retrofit.data.model.SalesRateModel;
-import com.example.dimuch.task2_retrofit.data.model.WeatherModel;
+import com.example.dimuch.task2_retrofit.data.model.privatbank.SalesRateModel;
+import com.example.dimuch.task2_retrofit.data.model.weather.WeatherModel;
 import com.example.dimuch.task2_retrofit.data.remote.RestApi;
 import rx.Observable;
 

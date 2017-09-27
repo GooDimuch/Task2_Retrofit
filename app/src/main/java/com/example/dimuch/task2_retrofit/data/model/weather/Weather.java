@@ -1,4 +1,4 @@
-package com.example.dimuch.task2_retrofit.data.model;
+package com.example.dimuch.task2_retrofit.data.model.weather;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -9,6 +9,27 @@ public class Weather {
   @SerializedName("main") @Expose private String main;
   @SerializedName("description") @Expose private String description;
   @SerializedName("icon") @Expose private String icon;
+
+  /**
+   * No args constructor for use in serialization
+   */
+  public Weather() {
+  }
+
+  /**
+   *
+   * @param id
+   * @param icon
+   * @param description
+   * @param main
+   */
+  public Weather(Integer id, String main, String description, String icon) {
+    super();
+    this.id = id;
+    this.main = main;
+    this.description = description;
+    this.icon = icon;
+  }
 
   public Integer getId() {
     return id;
