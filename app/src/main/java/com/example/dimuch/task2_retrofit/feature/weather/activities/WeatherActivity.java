@@ -18,6 +18,7 @@ import com.example.dimuch.task2_retrofit.feature.weather.presenters.WeatherActiv
 import com.example.dimuch.task2_retrofit.feature.weather.views.IWeatherActivityView;
 import com.example.dimuch.task2_retrofit.utils.Constants;
 import java.util.List;
+import timber.log.Timber;
 
 public class WeatherActivity extends MvpAppCompatActivity implements IWeatherActivityView {
 
@@ -47,19 +48,23 @@ public class WeatherActivity extends MvpAppCompatActivity implements IWeatherAct
   }
 
   @Override public void showResultPost(String sResultPost) {
+    Timber.e("showResultPost");
     //        adapter.notifyDataSetChanged();
     tvResultPost.setText(sResultPost);
   }
 
   @Override public void showMessage(String sLoadingMessage) {
+    Timber.e("showMessage");
     tvLoadingMessage.setText(sLoadingMessage);
   }
 
   @Override public void showToast(String sToastMessage) {
+    Timber.e("showToast");
     Toast.makeText(getApplicationContext(), sToastMessage, Toast.LENGTH_LONG).show();
   }
 
   @Override public void toggleMessageLoading(boolean isLoading) {
+    Timber.e("toggleMessageLoading, isLoading = " + isLoading);
     pbLoading.setVisibility(isLoading ? View.VISIBLE : View.GONE);
     tvLoadingMessage.setVisibility(isLoading ? View.VISIBLE : View.GONE);
   }

@@ -10,6 +10,7 @@ import com.example.dimuch.task2_retrofit.feature.weather.views.IWeatherActivityV
 import com.example.dimuch.task2_retrofit.utils.Constants;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
+import timber.log.Timber;
 
 /**
  * Created by Dimuch on 26.09.2017.

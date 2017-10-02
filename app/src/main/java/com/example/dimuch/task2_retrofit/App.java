@@ -4,6 +4,7 @@ import android.app.Application;
 import com.example.dimuch.task2_retrofit.di.components.AppComponent;
 import com.example.dimuch.task2_retrofit.di.components.DaggerAppComponent;
 import com.example.dimuch.task2_retrofit.di.modules.AppModule;
+import timber.log.Timber;
 
 public class App extends Application {
 
@@ -16,6 +17,8 @@ public class App extends Application {
   @Override public void onCreate() {
     super.onCreate();
     component = buildComponent();
+
+    Timber.plant(new Timber.DebugTree());
   }
 
   private AppComponent buildComponent() {
