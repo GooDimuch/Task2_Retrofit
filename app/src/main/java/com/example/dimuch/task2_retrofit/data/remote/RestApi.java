@@ -1,8 +1,6 @@
 package com.example.dimuch.task2_retrofit.data.remote;
 
 import com.example.dimuch.task2_retrofit.data.local.RetrofitHelper;
-import com.example.dimuch.task2_retrofit.data.model.privatbank.PrivatBankApi;
-import com.example.dimuch.task2_retrofit.data.model.privatbank.SalesRateModel;
 import com.example.dimuch.task2_retrofit.data.model.weather.WeatherApi;
 import com.example.dimuch.task2_retrofit.data.model.weather.WeatherModel;
 import com.example.dimuch.task2_retrofit.utils.Constants;
@@ -15,21 +13,20 @@ import rx.schedulers.Schedulers;
  */
 
 public class RestApi {
-  private final PrivatBankApi privatbankApi;
+  //private final PrivatBankApi privatbankApi;
   private final WeatherApi weatherApi;
 
-  public RestApi(PrivatBankApi privatbankApi, WeatherApi weatherApi) {
-    this.privatbankApi = privatbankApi;
+  public RestApi(WeatherApi weatherApi) {
+    //this.privatbankApi = privatbankApi;
     this.weatherApi = weatherApi;
   }
 
-  public Observable<SalesRateModel> getData(String date) {
-    return privatbankApi.getData(date);
-  }
+  //public Observable<SalesRateModel> getData(String date) {
+  //  return privatbankApi.getData(date);
+  //}
 
   public Observable<String> getWeatherData() {
-    return RetrofitHelper.getWeatherApi()
-        .getWeather(Constants.WEATHER_ID, Constants.WEATHER_APPID)
+    return weatherApi.getWeather(Constants.WEATHER_ID, Constants.WEATHER_APPID)
         .map(WeatherModel::toString)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread());

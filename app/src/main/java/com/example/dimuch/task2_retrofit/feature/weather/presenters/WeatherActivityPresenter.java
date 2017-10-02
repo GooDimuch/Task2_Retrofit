@@ -4,14 +4,12 @@ import android.os.AsyncTask;
 import android.util.Log;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
+import com.example.dimuch.task2_retrofit.App;
 import com.example.dimuch.task2_retrofit.data.DataManager;
-import com.example.dimuch.task2_retrofit.data.local.RetrofitHelper;
-import com.example.dimuch.task2_retrofit.data.model.weather.WeatherModel;
 import com.example.dimuch.task2_retrofit.feature.weather.views.IWeatherActivityView;
 import com.example.dimuch.task2_retrofit.utils.Constants;
 import java.util.concurrent.TimeUnit;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import javax.inject.Inject;
 
 /**
  * Created by Dimuch on 26.09.2017.
@@ -19,8 +17,9 @@ import rx.schedulers.Schedulers;
 
 @InjectViewState public class WeatherActivityPresenter extends MvpPresenter<IWeatherActivityView> {
 
+  @Inject String testMessage;
+  @Inject DataManager mDataManager;
   private String mResultPost = "null";
-  private DataManager mDataManager;
 
   public WeatherActivityPresenter() {
   }
@@ -28,11 +27,12 @@ import rx.schedulers.Schedulers;
   @Override protected void onFirstViewAttach() {
     //Log.wtf(Constants.MY_LOG, "onFirstViewAttach()");
     super.onFirstViewAttach();
+    App.getComponent().inject(this);
 
     uploadResultPost();
     getViewState().toggleMessageLoading(true);
     getViewState().showMessage("Loading");
-    getViewState().showResultPost(mResultPost);
+    getViewState().showResultPost(testMessage);
 
     new AsyncTask<Void, Void, Void>() {
 
@@ -63,6 +63,13 @@ import rx.schedulers.Schedulers;
     //    .observeOn(AndroidSchedulers.mainThread())
     //    //.subscribe(adapter::addListNewsEntity);
     //    .subscribe(this::setmResultPost);
+
+    //RetrofitHelper.getWeatherApi()
+    //    .getWeather(Constants.WEATHER_ID, Constants.WEATHER_APPID)
+    //    .map(WeatherModel::toString)
+    //    .subscribeOn(Schedulers.io())
+    //    .observeOn(AndroidSchedulers.mainThread())
+    //    .subscribe(this::setmResultPost, throwable -> Log.wtf("myLog", throwable));
 
     mDataManager.getWeatherData()
         .subscribe(this::setmResultPost, throwable -> Log.wtf("myLog", throwable));

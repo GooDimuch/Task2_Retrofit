@@ -17,9 +17,9 @@ public class DataManager {
     this.mRestApi = mRestApi;
   }
 
-  public Observable<SalesRateModel> getData(String date) {
-    return mRestApi.getData(date);
-  }
+  //public Observable<SalesRateModel> getData(String date) {
+  //  return mRestApi.getData(date);
+  //}
 
   public Observable<String> getWeatherData() {
     return mRestApi.getWeatherData();

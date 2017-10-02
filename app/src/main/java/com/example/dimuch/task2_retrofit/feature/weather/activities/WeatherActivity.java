@@ -19,7 +19,7 @@ import com.example.dimuch.task2_retrofit.feature.weather.views.IWeatherActivityV
 import com.example.dimuch.task2_retrofit.utils.Constants;
 import java.util.List;
 
-public class WeatherActivityActivity extends MvpAppCompatActivity implements IWeatherActivityView {
+public class WeatherActivity extends MvpAppCompatActivity implements IWeatherActivityView {
 
   @BindView(R.id.pbLoading) ProgressBar pbLoading;
   @BindView(R.id.tvLoadingMessage) TextView tvLoadingMessage;
