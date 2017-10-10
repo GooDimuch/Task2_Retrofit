@@ -16,9 +16,5 @@ import com.example.dimuch.task2_retrofit.feature.weather.strategies.WeatherState
 
   @StateStrategyType(AddToEndSingleStrategy.class) void showResultPost(String sResultPost);
 
-  @StateStrategyType(AddToEndSingleStrategy.class) void showMessage(String sLoadingMessage);
-
   void showToast(String sToastMessage);
-
-  @StateStrategyType(AddToEndSingleStrategy.class) void toggleMessageLoading(boolean isLoading);
 }

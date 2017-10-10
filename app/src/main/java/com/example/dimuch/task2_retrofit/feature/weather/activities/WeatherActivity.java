@@ -13,6 +13,7 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.dimuch.task2_retrofit.R;
 import com.example.dimuch.task2_retrofit.data.model.privatbank.SalesRateModel;
+import com.example.dimuch.task2_retrofit.data.model.weather.WeatherModel;
 import com.example.dimuch.task2_retrofit.feature.weather.adapters.WeatherAdapter;
 import com.example.dimuch.task2_retrofit.feature.weather.presenters.WeatherActivityPresenter;
 import com.example.dimuch.task2_retrofit.feature.weather.views.IWeatherActivityView;
@@ -22,14 +23,12 @@ import timber.log.Timber;
 
 public class WeatherActivity extends MvpAppCompatActivity implements IWeatherActivityView {
 
-  @BindView(R.id.pbLoading) ProgressBar pbLoading;
-  @BindView(R.id.tvLoadingMessage) TextView tvLoadingMessage;
   @BindView(R.id.tvResultPost) TextView tvResultPost;
 
   @InjectPresenter WeatherActivityPresenter weatherActivityPresenter;
 
   private RecyclerView recyclerView;
-  private List<SalesRateModel> exchangeRatesArray;
+  private List<WeatherModel> weatherArray;
   private WeatherAdapter adapter;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
@@ -53,19 +52,9 @@ public class WeatherActivity extends MvpAppCompatActivity implements IWeatherAct
     tvResultPost.setText(sResultPost);
   }
 
-  @Override public void showMessage(String sLoadingMessage) {
-    Timber.e("showMessage");
-    tvLoadingMessage.setText(sLoadingMessage);
-  }
-
   @Override public void showToast(String sToastMessage) {
     Timber.e("showToast");
     Toast.makeText(getApplicationContext(), sToastMessage, Toast.LENGTH_LONG).show();
   }
 
-  @Override public void toggleMessageLoading(boolean isLoading) {
-    Timber.e("toggleMessageLoading, isLoading = " + isLoading);
-    pbLoading.setVisibility(isLoading ? View.VISIBLE : View.GONE);
-    tvLoadingMessage.setVisibility(isLoading ? View.VISIBLE : View.GONE);
-  }
 }

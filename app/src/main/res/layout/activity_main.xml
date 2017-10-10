@@ -7,28 +7,6 @@
     tools:context="com.example.dimuch.task2_retrofit.feature.weather.activities.WeatherActivity">
 
     <TextView
-        android:id="@+id/tvLoadingMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/pbLoading"
-        app:layout_constraintBottom_toBottomOf="@+id/pbLoading"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="-1dp" />
-
-    <ProgressBar
-        android:id="@+id/pbLoading"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/tvLoadingMessage"
-        app:layout_constraintHorizontal_chainStyle="packed" />
-
-    <TextView
         android:id="@+id/tvResultPost"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -36,11 +14,11 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pbLoading" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/posts_recycle_view"
