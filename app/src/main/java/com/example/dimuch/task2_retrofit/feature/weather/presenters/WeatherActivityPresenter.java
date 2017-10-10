@@ -4,7 +4,10 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.example.dimuch.task2_retrofit.App;
 import com.example.dimuch.task2_retrofit.data.DataManager;
+import com.example.dimuch.task2_retrofit.data.model.weather.WeatherDay;
 import com.example.dimuch.task2_retrofit.feature.weather.views.IWeatherActivityView;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
 import timber.log.Timber;
 
@@ -26,7 +29,16 @@ import timber.log.Timber;
     App.getComponent().inject(this);
 
     uploadResultPost();
+    getViewState().showWeatherArray(tempWeatherArray());
 
+  }
+
+  private List<WeatherDay> tempWeatherArray() {
+    List<WeatherDay> weatherArray = new ArrayList<>();
+    weatherArray.add(new WeatherDay());
+    weatherArray.add(new WeatherDay());
+    weatherArray.add(new WeatherDay());
+    return weatherArray;
   }
 
   public void uploadResultPost() {
