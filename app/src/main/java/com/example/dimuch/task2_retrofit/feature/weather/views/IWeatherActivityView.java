@@ -4,7 +4,7 @@ import com.arellomobile.mvp.MvpView;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy;
 import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy;
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType;
-import com.example.dimuch.task2_retrofit.data.model.weather.WeatherDay;
+import com.example.dimuch.task2_retrofit.data.model.weather.WeatherForWholeDay;
 import java.util.List;
 
 /**
@@ -16,7 +16,7 @@ import java.util.List;
 
   @StateStrategyType(AddToEndSingleStrategy.class) void showResultPost(String sResultPost);
 
-  @StateStrategyType(AddToEndSingleStrategy.class) void showWeatherArray(List<WeatherDay> weatherArray);
+  @StateStrategyType(AddToEndSingleStrategy.class) void showWeatherArray(List<WeatherForWholeDay> weatherArray);
 
   void showToast(String sToastMessage);
 }

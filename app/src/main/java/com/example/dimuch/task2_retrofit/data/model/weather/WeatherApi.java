@@ -1,6 +1,5 @@
 package com.example.dimuch.task2_retrofit.data.model.weather;
 
-import com.example.dimuch.task2_retrofit.data.model.privatbank.SalesRateModel;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;

@@ -9,14 +9,14 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import com.example.dimuch.task2_retrofit.R;
-import com.example.dimuch.task2_retrofit.data.model.weather.WeatherDay;
+import com.example.dimuch.task2_retrofit.data.model.weather.WeatherForWholeDay;
 import java.util.List;
 
 public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHolder> {
 
-  private List<WeatherDay> mWeatherArray;
+  private List<WeatherForWholeDay> mWeatherArray;
 
-  public WeatherAdapter(List<WeatherDay> weatherArray) {
+  public WeatherAdapter(List<WeatherForWholeDay> weatherArray) {
     mWeatherArray = weatherArray;
   }
 
@@ -26,18 +26,18 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
   }
 
   @Override public void onBindViewHolder(ViewHolder holder, int position) {
-    WeatherDay weatherDay = mWeatherArray.get(position);
+    WeatherForWholeDay weatherForWholeDay = mWeatherArray.get(position);
 
     if (position == 0) {
       holder.tvDayOfWeek.setText("Today");
     } else if (position == 1) {
       holder.tvDayOfWeek.setText("Tomorrow");
     } else {
-      holder.tvDayOfWeek.setText(weatherDay.getDayOfWeek());
+      holder.tvDayOfWeek.setText(weatherForWholeDay.getsDayOfWeek());
     }
-    holder.ivWeatherIcon.setImageResource(weatherDay.getWeatherIcon());
-    holder.tvWeatherOfDay.setText(weatherDay.getWeatherOfDay());
-    holder.tvTemperature.setText(weatherDay.getTemperatureOfDay());
+    holder.ivWeatherIcon.setImageResource(weatherForWholeDay.getiWeatherIcon());
+    holder.tvWeatherOfDay.setText(weatherForWholeDay.getsWeatherOfDay());
+    holder.tvTemperature.setText(weatherForWholeDay.getsTemperatureOfDay());
   }
 
   @Override public int getItemCount() {
@@ -57,7 +57,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
     }
   }
 
-  public void addListNewsEntity(List<WeatherDay> weatherArray) {
+  public void addListNewsEntity(List<WeatherForWholeDay> weatherArray) {
     this.mWeatherArray = weatherArray;
     //        notifyDataSetChanged();
   }

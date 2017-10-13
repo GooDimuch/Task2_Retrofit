@@ -10,7 +10,7 @@ import butterknife.ButterKnife;
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.example.dimuch.task2_retrofit.R;
-import com.example.dimuch.task2_retrofit.data.model.weather.WeatherDay;
+import com.example.dimuch.task2_retrofit.data.model.weather.WeatherForWholeDay;
 import com.example.dimuch.task2_retrofit.feature.weather.adapters.WeatherAdapter;
 import com.example.dimuch.task2_retrofit.feature.weather.presenters.WeatherActivityPresenter;
 import com.example.dimuch.task2_retrofit.feature.weather.views.IWeatherActivityView;
@@ -37,7 +37,7 @@ public class WeatherActivity extends MvpAppCompatActivity implements IWeatherAct
     tvResultPost.setText(sResultPost);
   }
 
-  @Override public void showWeatherArray(List<WeatherDay> weatherArray) {
+  @Override public void showWeatherArray(List<WeatherForWholeDay> weatherArray) {
     rvWeather.setLayoutManager(new LinearLayoutManager(this));
     WeatherAdapter adapter = new WeatherAdapter(weatherArray);
     rvWeather.setAdapter(adapter);

@@ -2,13 +2,14 @@ package com.example.dimuch.task2_retrofit.data.model.weather;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.util.List;
 
 public class WeatherModel {
 
   @SerializedName("cod") @Expose private String cod;
   @SerializedName("message") @Expose private Double message;
   @SerializedName("cnt") @Expose private Integer cnt;
-  @SerializedName("weatherList") @Expose private java.util.List<WeatherList> weatherList = null;
+  @SerializedName("weatherList") @Expose private List<WeatherList> weatherList = null;
   @SerializedName("city") @Expose private City city;
 
   /**
@@ -59,11 +60,11 @@ public class WeatherModel {
     this.cnt = cnt;
   }
 
-  public java.util.List<WeatherList> getWeatherList() {
+  public List<WeatherList> getWeatherList() {
     return weatherList;
   }
 
-  public void setWeatherList(java.util.List<WeatherList> weatherList) {
+  public void setWeatherList(List<WeatherList> weatherList) {
     this.weatherList = weatherList;
   }
 
