@@ -7,21 +7,6 @@ public class Clouds {
 
   @SerializedName("all") @Expose private Integer all;
 
-  /**
-   * No args constructor for use in serialization
-   */
-  public Clouds() {
-  }
-
-  /**
-   *
-   * @param all
-   */
-  public Clouds(Integer all) {
-    super();
-    this.all = all;
-  }
-
   public Integer getAll() {
     return all;
   }

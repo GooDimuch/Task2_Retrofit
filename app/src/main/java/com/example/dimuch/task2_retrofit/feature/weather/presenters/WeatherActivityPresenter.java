@@ -31,8 +31,8 @@ import timber.log.Timber;
     super.onFirstViewAttach();
     App.getComponent().inject(this);
 
-    getViewState().showWeatherArray(tempWeatherArray());
-    getViewState().showResultPost(testMessage);
+    //getViewState().showWeatherArray(tempWeatherArray());
+    //getViewState().showResultPost(testMessage);
     uploadResultPost();
   }
 
@@ -53,6 +53,7 @@ import timber.log.Timber;
         })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(getViewState()::showWeatherArray, Timber::wtf);
+        .map(Object::toString)
+        .subscribe(getViewState()::showResultPost, Timber::wtf);
   }
 }

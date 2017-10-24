@@ -8,23 +8,6 @@ public class Wind {
   @SerializedName("speed") @Expose private Double speed;
   @SerializedName("deg") @Expose private Double deg;
 
-  /**
-   * No args constructor for use in serialization
-   */
-  public Wind() {
-  }
-
-  /**
-   *
-   * @param speed
-   * @param deg
-   */
-  public Wind(Double speed, Double deg) {
-    super();
-    this.speed = speed;
-    this.deg = deg;
-  }
-
   public Double getSpeed() {
     return speed;
   }

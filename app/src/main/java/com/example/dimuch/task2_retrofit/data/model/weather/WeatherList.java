@@ -2,47 +2,18 @@ package com.example.dimuch.task2_retrofit.data.model.weather;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import java.util.List;
 
 public class WeatherList {
 
   @SerializedName("dt") @Expose private Integer dt;
   @SerializedName("main") @Expose private Main main;
-  @SerializedName("weather") @Expose private java.util.List<Weather> weather = null;
+  @SerializedName("weather") @Expose private List<Weather> weather = null;
   @SerializedName("clouds") @Expose private Clouds clouds;
   @SerializedName("wind") @Expose private Wind wind;
+  @SerializedName("rain") @Expose private Rain rain;
   @SerializedName("sys") @Expose private Sys sys;
   @SerializedName("dt_txt") @Expose private String dtTxt;
-  @SerializedName("rain") @Expose private Rain rain;
-
-  /**
-   * No args constructor for use in serialization
-   */
-  public WeatherList() {
-  }
-
-  /**
-   *
-   * @param clouds
-   * @param dt
-   * @param wind
-   * @param sys
-   * @param dtTxt
-   * @param weather
-   * @param rain
-   * @param main
-   */
-  public WeatherList(Integer dt, Main main, java.util.List<Weather> weather, Clouds clouds,
-      Wind wind, Sys sys, String dtTxt, Rain rain) {
-    super();
-    this.dt = dt;
-    this.main = main;
-    this.weather = weather;
-    this.clouds = clouds;
-    this.wind = wind;
-    this.sys = sys;
-    this.dtTxt = dtTxt;
-    this.rain = rain;
-  }
 
   public Integer getDt() {
     return dt;
@@ -60,11 +31,11 @@ public class WeatherList {
     this.main = main;
   }
 
-  public java.util.List<Weather> getWeather() {
+  public List<Weather> getWeather() {
     return weather;
   }
 
-  public void setWeather(java.util.List<Weather> weather) {
+  public void setWeather(List<Weather> weather) {
     this.weather = weather;
   }
 
@@ -84,6 +55,14 @@ public class WeatherList {
     this.wind = wind;
   }
 
+  public Rain getRain() {
+    return rain;
+  }
+
+  public void setRain(Rain rain) {
+    this.rain = rain;
+  }
+
   public Sys getSys() {
     return sys;
   }
@@ -98,13 +77,5 @@ public class WeatherList {
 
   public void setDtTxt(String dtTxt) {
     this.dtTxt = dtTxt;
-  }
-
-  public Rain getRain() {
-    return rain;
-  }
-
-  public void setRain(Rain rain) {
-    this.rain = rain;
   }
 }

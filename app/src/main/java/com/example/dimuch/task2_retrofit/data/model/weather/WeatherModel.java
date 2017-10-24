@@ -12,30 +12,6 @@ public class WeatherModel {
   @SerializedName("weatherList") @Expose private List<WeatherList> weatherList = null;
   @SerializedName("city") @Expose private City city;
 
-  /**
-   * No args constructor for use in serialization
-   */
-  public WeatherModel() {
-  }
-
-  /**
-   *
-   * @param message
-   * @param cnt
-   * @param cod
-   * @param weatherList
-   * @param city
-   */
-  public WeatherModel(String cod, Double message, Integer cnt,
-      java.util.List<WeatherList> weatherList, City city) {
-    super();
-    this.cod = cod;
-    this.message = message;
-    this.cnt = cnt;
-    this.weatherList = weatherList;
-    this.city = city;
-  }
-
   public String getCod() {
     return cod;
   }

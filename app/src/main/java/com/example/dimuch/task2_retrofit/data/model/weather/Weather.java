@@ -10,27 +10,6 @@ public class Weather {
   @SerializedName("description") @Expose private String description;
   @SerializedName("icon") @Expose private String icon;
 
-  /**
-   * No args constructor for use in serialization
-   */
-  public Weather() {
-  }
-
-  /**
-   *
-   * @param id
-   * @param icon
-   * @param description
-   * @param main
-   */
-  public Weather(Integer id, String main, String description, String icon) {
-    super();
-    this.id = id;
-    this.main = main;
-    this.description = description;
-    this.icon = icon;
-  }
-
   public Integer getId() {
     return id;
   }

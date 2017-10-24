@@ -10,27 +10,6 @@ public class City {
   @SerializedName("coord") @Expose private Coord coord;
   @SerializedName("country") @Expose private String country;
 
-  /**
-   * No args constructor for use in serialization
-   */
-  public City() {
-  }
-
-  /**
-   *
-   * @param coord
-   * @param id
-   * @param name
-   * @param country
-   */
-  public City(Integer id, String name, Coord coord, String country) {
-    super();
-    this.id = id;
-    this.name = name;
-    this.coord = coord;
-    this.country = country;
-  }
-
   public Integer getId() {
     return id;
   }
