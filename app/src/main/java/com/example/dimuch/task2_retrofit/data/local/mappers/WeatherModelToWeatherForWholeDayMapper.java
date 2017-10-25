@@ -8,7 +8,6 @@ import com.example.dimuch.task2_retrofit.utils.Constants;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import timber.log.Timber;
 
 /**
  * Created by Dimuch on 13.10.2017.
@@ -47,7 +46,6 @@ public class WeatherModelToWeatherForWholeDayMapper
   private void fillWeatherForWholeDayArray() {
     Date date = new Date(0);
     for (WeatherForThreeHours weatherForThreeHours : mWeatherForThreeHoursList) {
-      Timber.e(weatherForThreeHours.getDate().toString());
       if (weatherForThreeHours.getDate().getDay() == date.getDay()) {
         mWeatherForWholeDayList.get(mWeatherForWholeDayList.size() - 1)
             .addWeatherForThreeHoursToList(weatherForThreeHours);
@@ -60,7 +58,6 @@ public class WeatherModelToWeatherForWholeDayMapper
     }
 
     for (WeatherForWholeDay weatherForWholeDay : mWeatherForWholeDayList) {
-
       int maxTemperatureOfDay = Integer.MIN_VALUE;
       int minTemperatureOfDay = Integer.MAX_VALUE;
 
@@ -71,10 +68,6 @@ public class WeatherModelToWeatherForWholeDayMapper
         if (minTemperatureOfDay > weatherForThreeHours.getiMinTemperatureOfDay()) {
           minTemperatureOfDay = weatherForThreeHours.getiMinTemperatureOfDay();
         }
-      }
-
-      for (WeatherForThreeHours weatherForThreeHours : weatherForWholeDay.getWeatherForThreeHoursList()) {
-        Timber.e(weatherForThreeHours.getDate().toString());
       }
 
       weatherForWholeDay.setsMaxTemperatureOfDay(

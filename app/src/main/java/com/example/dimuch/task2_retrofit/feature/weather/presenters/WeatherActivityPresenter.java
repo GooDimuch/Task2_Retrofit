@@ -27,21 +27,10 @@ import timber.log.Timber;
   }
 
   @Override protected void onFirstViewAttach() {
-    //Log.wtf(Constants.MY_LOG, "onFirstViewAttach()");
     super.onFirstViewAttach();
     App.getComponent().inject(this);
 
-    //getViewState().showWeatherArray(tempWeatherArray());
-    //getViewState().showResultPost(testMessage);
     uploadResultPost();
-  }
-
-  private List<WeatherForWholeDay> tempWeatherArray() {
-    List<WeatherForWholeDay> weatherArray = new ArrayList<>();
-    weatherArray.add(new WeatherForWholeDay());
-    weatherArray.add(new WeatherForWholeDay());
-    weatherArray.add(new WeatherForWholeDay());
-    return weatherArray;
   }
 
   public void uploadResultPost() {
@@ -53,7 +42,6 @@ import timber.log.Timber;
         })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        //.map(Object::toString)
         .subscribe(getViewState()::showWeatherArray, Timber::wtf);
   }
 }
