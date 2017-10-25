@@ -4,6 +4,7 @@ import com.example.dimuch.task2_retrofit.data.model.weather.WeatherForThreeHours
 import com.example.dimuch.task2_retrofit.data.model.weather.WeatherForWholeDay;
 import com.example.dimuch.task2_retrofit.data.model.weather.WeatherList;
 import com.example.dimuch.task2_retrofit.data.model.weather.WeatherModel;
+import com.example.dimuch.task2_retrofit.utils.Constants;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +36,7 @@ public class WeatherModelToWeatherForWholeDayMapper
   private void fillWeatherForThreeHoursArray() {
     for (WeatherList weatherList : mWeatherModel.getWeatherList()) {
       WeatherForThreeHours weatherForThreeHours = new WeatherForThreeHours();
-      weatherForThreeHours.setDayOfWeek(new Date(weatherList.getDt()));
+      weatherForThreeHours.setDate(new Date(weatherList.getDt().longValue() * 1000));
       weatherForThreeHours.setiMaxTemperatureOfDay(weatherList.getMain().getTempMax().intValue());
       weatherForThreeHours.setiMinTemperatureOfDay(weatherList.getMain().getTempMin().intValue());
       weatherForThreeHours.setsWeatherOfDay(weatherList.getWeather().get(0).getMain());
@@ -46,15 +47,15 @@ public class WeatherModelToWeatherForWholeDayMapper
   private void fillWeatherForWholeDayArray() {
     Date date = new Date(0);
     for (WeatherForThreeHours weatherForThreeHours : mWeatherForThreeHoursList) {
-      //Timber.e(weatherForThreeHours.toString());
-      if (weatherForThreeHours.getDayOfWeek().getDay() == date.getDay()) {
+      Timber.e(weatherForThreeHours.getDate().toString());
+      if (weatherForThreeHours.getDate().getDay() == date.getDay()) {
         mWeatherForWholeDayList.get(mWeatherForWholeDayList.size() - 1)
             .addWeatherForThreeHoursToList(weatherForThreeHours);
       } else {
         WeatherForWholeDay weatherForWholeDay = new WeatherForWholeDay();
         mWeatherForWholeDayList.add(weatherForWholeDay);
         weatherForWholeDay.addWeatherForThreeHoursToList(weatherForThreeHours);
-        date = weatherForThreeHours.getDayOfWeek();
+        date = weatherForThreeHours.getDate();
       }
     }
 
@@ -68,16 +69,22 @@ public class WeatherModelToWeatherForWholeDayMapper
           maxTemperatureOfDay = weatherForThreeHours.getiMaxTemperatureOfDay();
         }
         if (minTemperatureOfDay > weatherForThreeHours.getiMinTemperatureOfDay()) {
-          maxTemperatureOfDay = weatherForThreeHours.getiMinTemperatureOfDay();
+          minTemperatureOfDay = weatherForThreeHours.getiMinTemperatureOfDay();
         }
       }
 
-      weatherForWholeDay.setsMaxTemperatureOfDay(String.valueOf(maxTemperatureOfDay));
-      weatherForWholeDay.setsMinTemperatureOfDay(String.valueOf(minTemperatureOfDay));
+      for (WeatherForThreeHours weatherForThreeHours : weatherForWholeDay.getWeatherForThreeHoursList()) {
+        Timber.e(weatherForThreeHours.getDate().toString());
+      }
+
+      weatherForWholeDay.setsMaxTemperatureOfDay(
+          String.valueOf(maxTemperatureOfDay - Constants.INT_DEGREE_CELSIUS));
+      weatherForWholeDay.setsMinTemperatureOfDay(
+          String.valueOf(minTemperatureOfDay - Constants.INT_DEGREE_CELSIUS));
       weatherForWholeDay.setsWeatherOfDay(
           weatherForWholeDay.getWeatherForThreeHoursList().get(0).getsWeatherOfDay());
       weatherForWholeDay.setDayOfWeek(
-          weatherForWholeDay.getWeatherForThreeHoursList().get(0).getDayOfWeek());
+          weatherForWholeDay.getWeatherForThreeHoursList().get(0).getDate());
     }
   }
 }

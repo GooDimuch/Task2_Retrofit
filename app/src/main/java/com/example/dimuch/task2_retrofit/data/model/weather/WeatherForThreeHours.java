@@ -10,14 +10,14 @@ import java.util.Date;
 public class WeatherForThreeHours {
 
   private String sTimeOfDay;
-  private Date dayOfWeek;
+  private Date date;
   private int iMaxTemperatureOfDay;
   private int iMinTemperatureOfDay;
   private String sWeatherOfDay;
 
   public WeatherForThreeHours() {
     this.sTimeOfDay = "00:00";
-    this.dayOfWeek = defaultDate();
+    this.date = defaultDate();
     this.iMaxTemperatureOfDay = 0;
     this.iMinTemperatureOfDay = 0;
     this.sWeatherOfDay = "Rain";
@@ -57,12 +57,12 @@ public class WeatherForThreeHours {
     this.sWeatherOfDay = sWeatherOfDay;
   }
 
-  public Date getDayOfWeek() {
-    return dayOfWeek;
+  public Date getDate() {
+    return date;
   }
 
-  public void setDayOfWeek(Date dayOfWeek) {
-    this.dayOfWeek = dayOfWeek;
+  public void setDate(Date date) {
+    this.date = date;
   }
 
   @Override public String toString() {
@@ -70,8 +70,8 @@ public class WeatherForThreeHours {
         + "sTimeOfDay='"
         + sTimeOfDay
         + '\''
-        + ", dayOfWeek="
-        + dayOfWeek
+        + ", date="
+        + date
         + ", iMaxTemperatureOfDay="
         + iMaxTemperatureOfDay
         + ", iMinTemperatureOfDay="

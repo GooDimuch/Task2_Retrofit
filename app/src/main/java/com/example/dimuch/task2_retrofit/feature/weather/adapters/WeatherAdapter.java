@@ -41,7 +41,7 @@ public class WeatherAdapter extends RecyclerView.Adapter<WeatherAdapter.ViewHold
   }
 
   @Override public int getItemCount() {
-    return mWeatherArray == null ? 0 : mWeatherArray.size();
+    return mWeatherArray == null ? 0 : (mWeatherArray.size() > 5 ? 5 : mWeatherArray.size());
   }
 
   class ViewHolder extends RecyclerView.ViewHolder {

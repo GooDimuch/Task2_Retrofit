@@ -2,7 +2,6 @@ package com.example.dimuch.task2_retrofit.data.model.weather;
 
 import com.example.dimuch.task2_retrofit.R;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -13,9 +12,7 @@ import java.util.List;
 public class WeatherForWholeDay {
   private List<WeatherForThreeHours> weatherForThreeHoursList;
 
-  private String sDayOfWeek;
   private Date dayOfWeek;
-  private String sTemperatureOfDay;
   private String sMaxTemperatureOfDay;
   private String sMinTemperatureOfDay;
   private String sWeatherOfDay;
@@ -23,17 +20,9 @@ public class WeatherForWholeDay {
 
   public WeatherForWholeDay() {
     weatherForThreeHoursList = new ArrayList<>();
-    this.sDayOfWeek = "Monday";
-    this.dayOfWeek = defaultDate();
-    this.sTemperatureOfDay = "12'/5'";
-    this.sWeatherOfDay = "Rain";
+    this.dayOfWeek = new Date(0);
+    this.sWeatherOfDay = "*NULL*";
     this.iWeatherIcon = R.mipmap.ic_launcher;
-  }
-
-  private Date defaultDate() {
-    Calendar calendar = Calendar.getInstance();
-    calendar.setTimeInMillis(0);
-    return calendar.getTime();
   }
 
   public List<WeatherForThreeHours> getWeatherForThreeHoursList() {
@@ -45,23 +34,35 @@ public class WeatherForWholeDay {
   }
 
   public String getsDayOfWeek() {
-    return sDayOfWeek;
+    return transformIntToStringDayOfWeek(dayOfWeek.getDay());
+  }
+
+  private String transformIntToStringDayOfWeek(int day) {
+    switch (day) {
+      case 0:
+        return "Sunday";
+      case 1:
+        return "Monday";
+      case 2:
+        return "Tuesday";
+      case 3:
+        return "Wednesday";
+      case 4:
+        return "Thursday";
+      case 5:
+        return "Friday";
+      case 6:
+        return "Saturday";
+      default: return "*NULL*";
+    }
   }
 
   public String getsTemperatureOfDay() {
-    return sTemperatureOfDay;
-  }
-
-  public String getsMaxTemperatureOfDay() {
-    return sMaxTemperatureOfDay;
+    return sMaxTemperatureOfDay + "' / " + sMinTemperatureOfDay + "'";
   }
 
   public void setsMaxTemperatureOfDay(String sMaxTemperatureOfDay) {
     this.sMaxTemperatureOfDay = sMaxTemperatureOfDay;
-  }
-
-  public String getsMinTemperatureOfDay() {
-    return sMinTemperatureOfDay;
   }
 
   public void setsMinTemperatureOfDay(String sMinTemperatureOfDay) {
@@ -84,25 +85,17 @@ public class WeatherForWholeDay {
     this.iWeatherIcon = iWeatherIcon;
   }
 
-  public Date getDayOfWeek() {
-    return dayOfWeek;
-  }
-
   public void setDayOfWeek(Date dayOfWeek) {
     this.dayOfWeek = dayOfWeek;
   }
 
   @Override public String toString() {
     return "WeatherForWholeDay{"
-        + "weatherForThreeHoursList="
-        + weatherForThreeHoursList
         + ", sDayOfWeek='"
-        + sDayOfWeek
+        + transformIntToStringDayOfWeek(dayOfWeek.getDay())
         + '\''
         + ", dayOfWeek="
         + dayOfWeek
-        + ", sTemperatureOfDay='"
-        + sTemperatureOfDay
         + '\''
         + ", sMaxTemperatureOfDay='"
         + sMaxTemperatureOfDay
