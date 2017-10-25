@@ -26,6 +26,11 @@ public class DataManager {
   public Observable<List<WeatherForWholeDay>> getWeatherData() {
     return mRestApi.getWeatherData()
         .doOnNext(weatherModel -> Timber.e(weatherModel.toString()))
-        .map(weatherModel -> (new WeatherModelToWeatherForWholeDayMapper()).transform(weatherModel));
+        .map(weatherModel -> {
+          List<WeatherForWholeDay> list =
+              (new WeatherModelToWeatherForWholeDayMapper()).transform(weatherModel);
+          Timber.e(String.valueOf(list.size()));
+          return list;
+        });
   }
 }

@@ -53,7 +53,7 @@ import timber.log.Timber;
         })
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .map(Object::toString)
-        .subscribe(getViewState()::showResultPost, Timber::wtf);
+        //.map(Object::toString)
+        .subscribe(getViewState()::showWeatherArray, Timber::wtf);
   }
 }

@@ -7,6 +7,7 @@ import com.example.dimuch.task2_retrofit.data.model.weather.WeatherModel;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import timber.log.Timber;
 
 /**
  * Created by Dimuch on 13.10.2017.
@@ -45,6 +46,7 @@ public class WeatherModelToWeatherForWholeDayMapper
   private void fillWeatherForWholeDayArray() {
     Date date = new Date(0);
     for (WeatherForThreeHours weatherForThreeHours : mWeatherForThreeHoursList) {
+      //Timber.e(weatherForThreeHours.toString());
       if (weatherForThreeHours.getDayOfWeek().getDay() == date.getDay()) {
         mWeatherForWholeDayList.get(mWeatherForWholeDayList.size() - 1)
             .addWeatherForThreeHoursToList(weatherForThreeHours);

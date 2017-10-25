@@ -64,4 +64,21 @@ public class WeatherForThreeHours {
   public void setDayOfWeek(Date dayOfWeek) {
     this.dayOfWeek = dayOfWeek;
   }
+
+  @Override public String toString() {
+    return "WeatherForThreeHours{"
+        + "sTimeOfDay='"
+        + sTimeOfDay
+        + '\''
+        + ", dayOfWeek="
+        + dayOfWeek
+        + ", iMaxTemperatureOfDay="
+        + iMaxTemperatureOfDay
+        + ", iMinTemperatureOfDay="
+        + iMinTemperatureOfDay
+        + ", sWeatherOfDay='"
+        + sWeatherOfDay
+        + '\''
+        + '}';
+  }
 }

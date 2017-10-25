@@ -1,6 +1,7 @@
 package com.example.dimuch.task2_retrofit.data.model.weather;
 
 import com.example.dimuch.task2_retrofit.R;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -19,7 +20,9 @@ public class WeatherForWholeDay {
   private String sMinTemperatureOfDay;
   private String sWeatherOfDay;
   private int iWeatherIcon;
+
   public WeatherForWholeDay() {
+    weatherForThreeHoursList = new ArrayList<>();
     this.sDayOfWeek = "Monday";
     this.dayOfWeek = defaultDate();
     this.sTemperatureOfDay = "12'/5'";

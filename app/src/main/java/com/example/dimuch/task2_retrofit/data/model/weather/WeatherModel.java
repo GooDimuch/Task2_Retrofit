@@ -9,7 +9,7 @@ public class WeatherModel {
   @SerializedName("cod") @Expose private String cod;
   @SerializedName("message") @Expose private Double message;
   @SerializedName("cnt") @Expose private Integer cnt;
-  @SerializedName("weatherList") @Expose private List<WeatherList> weatherList = null;
+  @SerializedName("list") @Expose private List<WeatherList> weatherList = null;
   @SerializedName("city") @Expose private City city;
 
   public String getCod() {
