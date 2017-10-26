@@ -46,7 +46,7 @@ public class WeatherModelToWeatherForWholeDayMapper
   private void fillWeatherForWholeDayArray() {
     Date date = new Date(0);
     for (WeatherForThreeHours weatherForThreeHours : mWeatherForThreeHoursList) {
-      if (weatherForThreeHours.getDate().getDay() == date.getDay()) {
+      if (weatherForThreeHours.getDate().getDate() == date.getDate()) {
         mWeatherForWholeDayList.get(mWeatherForWholeDayList.size() - 1)
             .addWeatherForThreeHoursToList(weatherForThreeHours);
       } else {
